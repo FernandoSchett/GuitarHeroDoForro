@@ -1,0 +1,17 @@
+# Python generated files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment (e.g., created with virtualenv)
+venv/
+
+# Tupy specific files
+.typy/
+.typy_cache/
+
+# Log files
+*.log
+
+# Other files and directories you want to ignore

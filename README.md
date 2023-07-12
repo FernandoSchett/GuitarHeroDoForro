@@ -10,12 +10,15 @@
 
 ## Developed by 💻:
 
-- [Arthur dos Santos Silva]().
-- [Artur Mota]().
+- [Arthur dos Santos Silva]() - Implemented a method for varied scoring, adding points depending on where the player presses to make the note disappear.
+Updated the documentation to meet the project's requirements.
+- [Artur Mota]() - Adding scoring function per click (without scoring rays).
+Adding dynamic background and character.
+Generating random sheet music and left-right hitbox..
 - [Fernando Schettini](https://github.com/FernandoSchett).
-- [Bruna Anunciação]().
-- [João Paulo Gomes Bernardino]().
-- [Victoria Beatriz]().
+- [Bruna Anunciação]() - Implementing function for note disappearance. Creating menu for game start and difficulty selection. Creating menu for song selection.
+- [João Paulo Gomes Bernardino]() - Documentation modeling. Project setup, initial scope. Adding player. Adding music to the project with pygame.
+- [Victoria Beatriz]() - Implemented scoring function. Adding Easy, Medium, and Hard difficulty modes.
 
 ## About 🤔:
 
@@ -41,16 +44,16 @@ The project dependencies are described in  ```./dependencies/requirements.``` wi
 
 For installing dependencies more quickly, you can run the following command at terminal, inside the clonned repository:
 
-	sudo apt update && sudo apt install python3 python3-pip
+    sudo apt update && sudo apt install python3 python3-pip
     pip3 install -r ./dependencies/requirements.txt
 
 Make sure you have all Dependencies before running the project.
 
 ## How to run it 🏃:
 
-First, clone this repository. After that, simply execute the ```file_name``` file with the command:
+First, clone this repository. After that, simply execute the ```main.py``` file with the command:
 
-    sudo command_for_running_project
+    python main.py
 
 ## How to install 🔬:
 
@@ -70,6 +73,45 @@ Guitar Hero do Forró screens were developed to turn out like Figure 1.
 
 Heres the UML that represents how the application works with their classes.
 
+```mermaid
+classDiagram
+      
+      Game --> Song
+      Song --> Notes
+      Game --> User
+
+      
+      class Game{
+        -player: User
+        -song: Song
+        -score: int
+        -isPaused: bool
+        play()
+        pause()
+        restart()
+        end()
+      }
+      class User{
+        -highscore: int
+        -name: str
+        -sprite: Image
+        hit_note()
+      }
+      class Notes{
+        -x: int
+        -y: int
+        -file: Image
+        -angle: str
+        -speed: float
+
+        fall()
+      }
+      class Song{
+        -name: str
+        -musicSheet: list[Notes]
+        -difficult: str
+      }
+```
 
 <h4 align="center">Figure 2 - Guitar Hero do Forró UML.</h4>
 
