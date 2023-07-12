@@ -4,7 +4,7 @@
 
 <div align="center">
 	<a href="link_for_webite">
-	<img height = "250em" src = "assets/Personagem10.png"/>
+	<img height = "250em" src = "./assets/character/Personagem10.png"/>
     </a>
 </div>
 
