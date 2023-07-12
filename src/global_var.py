@@ -15,3 +15,15 @@ h = [HitBox(100, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 0),  # 
      ]
 
 counter = 0
+
+all_status = {
+    1: "easy",
+    2: "medium",
+    3: "hard",
+    4: "end"
+}
+
+NotasEsquerda = []
+NotasDireita = []
+NotasBaixo = []
+NotasCima = []
