@@ -1,4 +1,4 @@
-from notes import Notes
+from classes.notes import Notes
 
 class Song:
     """
@@ -17,26 +17,24 @@ class Song:
         self.__musicSheet = musicSheet
         self.__difficulty = difficulty
 
-    @property
-    def name(self) -> str:
+    # Getter methods
+
+    def get_name(self) -> str:
         return self.__name
 
-    @name.setter
-    def name(self, value: str) -> None:
-        self.__name = value
-
-    @property
-    def musicSheet(self) -> list[Notes]:
+    def get_musicSheet(self) -> list[Notes]:
         return self.__musicSheet
 
-    @musicSheet.setter
-    def musicSheet(self, value: list[Notes]) -> None:
-        self.__musicSheet = value
-
-    @property
-    def difficulty(self) -> str:
+    def get_difficulty(self) -> str:
         return self.__difficulty
 
-    @difficulty.setter
-    def difficulty(self, value: str) -> None:
+    # Setter methods
+
+    def set_name(self, value: str) -> None:
+        self.__name = value
+
+    def set_musicSheet(self, value: list[Notes]) -> None:
+        self.__musicSheet = value
+
+    def set_difficulty(self, value: str) -> None:
         self.__difficulty = value

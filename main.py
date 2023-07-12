@@ -5,29 +5,26 @@ import pygame
 from tupy import *
 from src.classes.score import Score
 from src.classes.notes import Notes
-from src.classes.menu import Menu
 from src.classes.hitbox import HitBox
 from src.classes.personagemassets import PersonagemAssets
-from src import *
+from src.classes.guitar_hero_forro import GuitarHeroForro
+from src.global_var import *
 
-pygame.init()
+path_file = os.path.dirname(__file__)
+game = GuitarHeroForro()
+game.start()
+
 
 """
     Tentativa de implementação por qwer (por hora) no update, sendo;
     q -> mais à esquerda
     r -> mais à direita
 """
-menu = Menu()
 
-def play(music):
-    pygame.mixer.music.load(f"{os.path.join(os.path.dirname(__file__), './assets/sounds', music)}")
-    pygame.mixer.music.play()
-
-
-h = [HitBox(100, 400, '../assets/HitBoxArrow.png', 0),  # Hitboxes
-     HitBox(200, 400, '../assets/HitBoxArrow.png', 180),
-     HitBox(200, 400, '../assets//HitBoxArrow.png', 90),
-     HitBox(300, 400, '../assets/HitBoxArrow.png', 270),
+h = [HitBox(100, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 0),  # Hitboxes
+     HitBox(200, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 180),
+     HitBox(200, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 90),
+     HitBox(300, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 270),
      ]
 
 # Valores que variam de acordo com a dificuldade
@@ -37,7 +34,7 @@ hard_inputs = ['Left', 'Rigth', 'Up', 'Right', 300, 200, 100, 400]
 
 counter = 0
 
-if menu._end == False:
+if game.menu._end == False:
     def destroyNotes():
         global NotasEsquerda
         global NotasDireita
@@ -61,7 +58,7 @@ if menu._end == False:
             if i.update():
                 NotasDireita.remove(i)
                 i.destroy()
-        if not menu._medium and not menu._hard:
+        if not game.menu._medium and not game.menu._hard:
             return
 
         for i in NotasBaixo:
@@ -74,7 +71,7 @@ if menu._end == False:
                 NotasBaixo.remove(i)
                 i.destroy()
 
-        if not menu._hard:
+        if not game.menu._hard:
             return
 
         for i in NotasCima:
@@ -91,21 +88,21 @@ if menu._end == False:
         a = random.randint(0, 100)
         b = random.randint(0, 100)
         if a < 24:
-            NotasEsquerda.append(Notes(menu._inputs[-2], 0, '../assets/image.png', 0, 4))
+            NotasEsquerda.append(Notes(game.menu._inputs[-2], 0, os.path.join(path_file, 'assets/image.png'), 0, 4))
         if b < 24:
-            NotasDireita.append(Notes(menu._inputs[-1], 0, '../assets/image.png', 180, 4))
+            NotasDireita.append(Notes(game.menu._inputs[-1], 0, os.path.join(path_file, 'assets/image.png'), 180, 4))
 
-        if not menu._medium and not menu._hard:
+        if not game.menu._medium and not game.menu._hard:
             return
 
         if a > 79:
-            NotasBaixo.append(Notes(menu._inputs[-3], 0, '../assets/image1.png', 90, 4))
+            NotasBaixo.append(Notes(game.menu._inputs[-3], 0, os.path.join(path_file, 'assets/image.png'), 90, 4))
 
-        if not menu._hard:
+        if not game.menu._hard:
             return
 
         if b > 79:
-            NotasCima.append(Notes(menu._inputs[-4], 0, './assets/image1.png', 270, 4))
+            NotasCima.append(Notes(game.menu._inputs[-4], 0, os.path.join(path_file, 'assets/image.png'), 270, 4))
 
     def updateNotes():
         global NotasEsquerda
@@ -135,7 +132,7 @@ if menu._end == False:
                 NotasDireita[0].y += 501
                 scorePlayer.decrement(5)
 
-        if not menu._medium and not menu._hard:
+        if not game.menu._medium and not game.menu._hard:
             return
 
         # Partitura para baixo
@@ -149,7 +146,7 @@ if menu._end == False:
                 NotasBaixo[0].y += 501
                 scorePlayer.decrement(5)
 
-        if not menu._hard:
+        if not game.menu._hard:
             return
 
         # Partitura para cima
@@ -167,53 +164,55 @@ if menu._end == False:
         global h
         global counter
         if keyboard.is_key_just_down('space'):
-            menu._file = '../assets/music.png'
+            game.menu._file = '../assets/music.png'
 
-        """ if para o menu de seleção de músicas """
+        """ if para o game.menu de seleção de músicas """
 
         if keyboard.is_key_just_down('A'):
-            menu._file = 'dificult.png'
-            play('../assets/sounds/tarecoemariola.ogg')
+            game.menu._file = 'dificult.png'
+            play('tarecoemariola.ogg')
         if keyboard.is_key_just_down('B'):
-            menu._file = 'dificult.png'
-            play('../assets/sounds/deixaeutesuperar.ogg')
+            game.menu._file = 'dificult.png'
+            play('deixaeutesuperar.ogg')
         if keyboard.is_key_just_down('C'):
-            menu._file = 'dificult.png'
-            play('../assets/sounds/ocheirodecarolina.ogg')
+            game.menu._file = 'dificult.png'
+            play('ocheirodecarolina.ogg')
         if keyboard.is_key_just_down('D'):
-            menu._file = 'dificult.png'
-            play('../assets/sounds/oxotedasmeninas.ogg')
+            game.menu._file = 'dificult.png'
+            play('oxotedasmeninas.ogg')
         if keyboard.is_key_just_down('E'):
-            menu._file = 'dificult.png'
-            play('../assets/sounds/luaminha.ogg')
+            game.menu._file = 'dificult.png'
+            play('luaminha.ogg')
 
-        """ if para o menu de dificuldades """
+        """ if para o game.menu de dificuldades """
 
-        if menu._file == '../assets/dificult.png':
+        if game.menu._file == "dificult.png":
             if keyboard.is_key_just_down('1'):
-                menu._easy = True
-                menu._inputs = easy_inputs
-                menu._file = '../assets/bg.png'
-                menu._end = True
+                print("dacil carai")
+                game.menu._easy = True
+                game.menu._inputs = easy_inputs
+                game.menu._file = '../assets/bg.png'
+                game.menu._end = True
             elif keyboard.is_key_just_down('2'):
-                menu._medium = True
-                menu._inputs = medium_inputs
-                menu._file = '../assets/bg.png'
-                menu._end = True
+                game.menu._medium = True
+                game.menu._inputs = medium_inputs
+                game.menu._file = '../assets/bg.png'
+                game.menu._end = True
             elif keyboard.is_key_just_down('3'):
-                menu._hard = True
-                menu._inputs = hard_inputs
-                menu._file = '../assets/bg.png'
-                menu._end = True
+                game.menu._hard = True
+                game.menu._inputs = hard_inputs
+                game.menu._file = '../assets/bg.png'
+                game.menu._end = True
 
-        if not menu._end:
+        if not game.menu._end:
             return
         if counter == 10:
             createNotes()
             counter = 0
         counter += 1
+        
         # modo facil
-        if menu._easy:
+        if game.menu._easy:
             """ o _show() é para mostrar as 2 hitboxs do modo fácil """
             h[0]._show()
             h[1]._show()
@@ -223,7 +222,7 @@ if menu._end == False:
             updateNotes()
 
         # modo medio
-        if menu._medium:
+        if game.menu._medium:
             """ o _show() é para mostrar as 3 hitboxs do modo fácil """
             h[0]._show()
             h[1].x = 300
@@ -234,7 +233,7 @@ if menu._end == False:
             updateNotes()
 
         # modo dificil
-        if menu._hard:
+        if game.menu._hard:
             """ o _show() é para mostrar as 4 hitboxs do modo fácil """
             h[0]._show()
             h[1].x = 400
@@ -256,7 +255,7 @@ if menu._end == False:
     NotasBaixo = []
     NotasCima = []
 
-    personagem = PersonagemAssets('../assets/Personagem1.png')
+    personagem = PersonagemAssets('../assets/character/Personagem1.png')
     scorePlayer = Score()
 
 run(globals())

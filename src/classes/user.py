@@ -19,9 +19,37 @@ class User(Image):
         self.__file = file
         self._hide()
 
+    # Getter methods
+
+    def get_highscore(self) -> int:
+        return self.__highscore
+
+    def get_score(self) -> int:
+        return self.__score
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_file(self) -> str:
+        return self.__file
+
+    # Setter methods
+
+    def set_highscore(self, value: int) -> None:
+        self.__highscore = value
+
+    def set_score(self, value: int) -> None:
+        self.__score = value
+
+    def set_name(self, value: str) -> None:
+        self.__name = value
+
+    def set_file(self, value: str) -> None:
+        self.__file = value
+
     def hit_note(self, value: int) -> None:
         """
         Método chamado quando uma nota é acertada pelo jogador.
         Atualiza a pontuação do jogador.
-        """        
+        """
         pass
