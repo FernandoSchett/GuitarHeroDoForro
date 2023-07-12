@@ -17,7 +17,6 @@ class Song:
         self.__musicSheet = musicSheet
         self.__difficulty = difficulty
 
-    # Getter methods
 
     def get_name(self) -> str:
         return self.__name
@@ -28,7 +27,6 @@ class Song:
     def get_difficulty(self) -> str:
         return self.__difficulty
 
-    # Setter methods
 
     def set_name(self, value: str) -> None:
         self.__name = value

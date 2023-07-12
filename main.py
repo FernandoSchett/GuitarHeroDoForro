@@ -1,40 +1,26 @@
 import random
 import os
-import pygame
 
 from tupy import *
 from src.classes.score import Score
 from src.classes.notes import Notes
-from src.classes.hitbox import HitBox
 from src.classes.personagemassets import PersonagemAssets
 from src.classes.guitar_hero_forro import GuitarHeroForro
 from src.global_var import *
+import pygame
 
 path_file = os.path.dirname(__file__)
 game = GuitarHeroForro()
-game.start()
-
 
 """
     Tentativa de implementação por qwer (por hora) no update, sendo;
     q -> mais à esquerda
     r -> mais à direita
 """
+if game.get_end() == False:
+    
+    print("tome")
 
-h = [HitBox(100, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 0),  # Hitboxes
-     HitBox(200, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 180),
-     HitBox(200, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 90),
-     HitBox(300, 400, os.path.join(path_file, 'assets/HitBoxArrow.png'), 270),
-     ]
-
-# Valores que variam de acordo com a dificuldade
-easy_inputs = ['Left', 'Right', 100, 200]
-medium_inputs = ['Left', 'Down', 'Right', 200, 100, 300]
-hard_inputs = ['Left', 'Rigth', 'Up', 'Right', 300, 200, 100, 400]
-
-counter = 0
-
-if game.menu._end == False:
     def destroyNotes():
         global NotasEsquerda
         global NotasDireita
@@ -163,28 +149,29 @@ if game.menu._end == False:
     def update():
         global h
         global counter
+
         if keyboard.is_key_just_down('space'):
-            game.menu._file = '../assets/music.png'
+            game.__screen._file= 'music.png'
 
         """ if para o game.menu de seleção de músicas """
 
         if keyboard.is_key_just_down('A'):
-            game.menu._file = 'dificult.png'
-            play('tarecoemariola.ogg')
+            game.__screen._file = 'dificult.png'
+            game.play('tarecoemariola.ogg')
         if keyboard.is_key_just_down('B'):
-            game.menu._file = 'dificult.png'
-            play('deixaeutesuperar.ogg')
+            game.__screen._file = 'dificult.png'
+            game.play('deixaeutesuperar.ogg')
         if keyboard.is_key_just_down('C'):
-            game.menu._file = 'dificult.png'
-            play('ocheirodecarolina.ogg')
+            game.__screen._file = 'dificult.png'
+            game.play('ocheirodecarolina.ogg')
         if keyboard.is_key_just_down('D'):
-            game.menu._file = 'dificult.png'
-            play('oxotedasmeninas.ogg')
+            game.__screen._file = 'dificult.png'
+            game.play('oxotedasmeninas.ogg')
         if keyboard.is_key_just_down('E'):
-            game.menu._file = 'dificult.png'
-            play('luaminha.ogg')
+            game.__screen._file = 'dificult.png'
+            game.play('luaminha.ogg')
 
-        """ if para o game.menu de dificuldades """
+        """ if para o menu de dificuldades """
 
         if game.menu._file == "dificult.png":
             if keyboard.is_key_just_down('1'):
@@ -258,4 +245,4 @@ if game.menu._end == False:
     personagem = PersonagemAssets('../assets/character/Personagem1.png')
     scorePlayer = Score()
 
-run(globals())
+game.start()
