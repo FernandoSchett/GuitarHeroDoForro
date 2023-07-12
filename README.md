@@ -10,13 +10,13 @@
 
 ## Developed by 💻:
 
-- [Arthur dos Santos Silva]() - Implemented a method for varied scoring, adding points depending on where the player presses to make the note disappear.
+- Arthur dos Santos Silva - Implemented a method for varied scoring, adding points depending on where the player presses to make the note disappear.
 Updated the documentation to meet the project's requirements.
-- [Artur Mota]() - Adding scoring function per click (without scoring rays). Adding dynamic background and character. Generating random sheet music and left-right hitbox.
-- [Fernando Schettini](https://github.com/FernandoSchett) - New Docs, and project arquitecture.
-- [Bruna Anunciação]() - Implementing function for note disappearance. Creating menu for game start and difficulty selection. Creating menu for song selection.
-- [João Paulo Gomes Bernardino]() - Documentation modeling. Project setup, initial scope. Adding player. Adding music to the project with pygame.
-- [Victoria Beatriz]() - Implemented scoring function. Adding Easy, Medium, and Hard difficulty modes.
+- Artur Mota - Adding scoring function per click (without scoring rays). Adding dynamic background and character. Generating random sheet music and left-right hitbox.
+- [Fernando Schettini](https://github.com/FernandoSchett) - New Docs, project arquitecture, OOP surpervision.
+- Bruna Anunciação - Implementing function for note disappearance. Creating menu for game start and difficulty selection. Creating menu for song selection.
+- João Paulo Gomes Bernardino - Documentation modeling. Project setup, initial scope. Adding player. Adding music to the project with pygame.
+- Victoria Beatriz - Implemented scoring function. Adding Easy, Medium, and Hard difficulty modes.
 
 ## About 🤔:
 
@@ -73,7 +73,6 @@ Guitar Hero do Forró screens were developed to turn out like Figure 1.
 </div>
 <h4 align="center">Figure 1 - Screens from Guitar Hero do Forró </h4>
 
-
 ## UML‍ 💬:
 
 Heres the UML that represents how the application works with their classes.
@@ -126,10 +125,8 @@ Developers used [Trello]() to get things organized, each one using their own bra
 
 ### Tools Used 🛠️: 
 
-- [VScode](https://code.visualstudio.com/). 
--
--
-	
+- [VScode](https://code.visualstudio.com/).  
+
 ## How to contribute 🫂:
 
 Feel free to create a new branch, fork the project, create a new Issue or make a pull request contact one of us to develop at Guitar Hero do Forró.
