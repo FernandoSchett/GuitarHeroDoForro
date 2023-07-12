@@ -21,7 +21,7 @@ menu = Menu()
 
 
 def play(music):
-    pygame.mixer.music.load(f"{os.path.join(os.path.dirname(__file__), '../assets/sounds', music)}")
+    pygame.mixer.music.load(f"{os.path.join(os.path.dirname(__file__), './assets/sounds', music)}")
     pygame.mixer.music.play()
 
 
