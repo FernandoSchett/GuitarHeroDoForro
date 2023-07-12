@@ -4,7 +4,7 @@
 
 <div align="center">
 	<a href="link_for_webite">
-	<img height = "250em" src = "assets/Personagem10.png" />
+	<img height = "250em" src = "assets/Personagem10.png"/>
     </a>
 </div>
 
@@ -13,7 +13,7 @@
 - [Arthur dos Santos Silva]() - Implemented a method for varied scoring, adding points depending on where the player presses to make the note disappear.
 Updated the documentation to meet the project's requirements.
 - [Artur Mota]() - Adding scoring function per click (without scoring rays). Adding dynamic background and character. Generating random sheet music and left-right hitbox.
-- [Fernando Schettini](https://github.com/FernandoSchett).
+- [Fernando Schettini](https://github.com/FernandoSchett) - New Docs, and project arquitecture.
 - [Bruna Anunciação]() - Implementing function for note disappearance. Creating menu for game start and difficulty selection. Creating menu for song selection.
 - [João Paulo Gomes Bernardino]() - Documentation modeling. Project setup, initial scope. Adding player. Adding music to the project with pygame.
 - [Victoria Beatriz]() - Implemented scoring function. Adding Easy, Medium, and Hard difficulty modes.
@@ -30,8 +30,15 @@ During the gameplay, musical notes will be displayed on the screen as descending
 
 ## Resourses 🧑‍🔬:
 
-- 
-- 
+- Song selection: Players can choose from 5 different songs to play.
+
+- Multiple difficulties: Each song has 3 different difficulty levels, allowing players to adjust the challenge according to their skills.
+
+- Increased tempo: As the player hits more keys correctly, the game's tempo accelerates, increasing the challenge.
+
+- Doubled points: If the player hits many consecutive keys accurately, they earn double points, incentivizing the player to maintain rhythm and accuracy.
+
+- "Jurema": Throughout the game, a character named Jenny dances to the sound of the music, adding a visual element to the game.
 
 ## Dependencies 🚚:
 
