@@ -14,7 +14,7 @@
 Updated the documentation to meet the project's requirements.
 - [Artur Mota]() - Adding scoring function per click (without scoring rays).
 Adding dynamic background and character.
-Generating random sheet music and left-right hitbox..
+Generating random sheet music and left-right hitbox.
 - [Fernando Schettini](https://github.com/FernandoSchett).
 - [Bruna Anunciação]() - Implementing function for note disappearance. Creating menu for game start and difficulty selection. Creating menu for song selection.
 - [João Paulo Gomes Bernardino]() - Documentation modeling. Project setup, initial scope. Adding player. Adding music to the project with pygame.
@@ -121,13 +121,9 @@ Developers used [Trello]() to get things organized, each one using their own bra
 
 ### Tools Used 🛠️: 
 
-- [Tool](http:link.com). 
-- 
-- 
-
-For installing some tools more quickly, you can run the following command at terminal, inside the clonned repository:
-
-    sh ./dependencies/install_tools.sh
+- [VScode](https://code.visualstudio.com/). 
+-
+-
 	
 ## How to contribute 🫂:
 
