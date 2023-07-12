@@ -1,6 +1,7 @@
 import random
 import os
 import pygame
+
 from tupy import *
 from score import Score
 from notes import Notes
@@ -20,7 +21,7 @@ menu = Menu()
 
 
 def play(music):
-    pygame.mixer.music.load(f"{os.path.join(os.path.dirname(__file__), 'assets/sounds', music)}")
+    pygame.mixer.music.load(f"{os.path.join(os.path.dirname(__file__), '../assets/sounds', music)}")
     pygame.mixer.music.play()
 
 
