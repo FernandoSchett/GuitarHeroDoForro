@@ -3,11 +3,11 @@ import os
 import pygame
 
 from tupy import *
-from score import Score
-from notes import Notes
-from menu import Menu
-from menu import HitBox
-from menu import PersonagemAssets
+from src.classes.score import Score
+from src.classes.notes import Notes
+from src.classes.menu import Menu
+from src.classes.hitbox import HitBox
+from src.classes.personagemassets import PersonagemAssets
 
 pygame.init()
 
@@ -25,10 +25,10 @@ def play(music):
     pygame.mixer.music.play()
 
 
-h = [HitBox(100, 400, 'HitBoxArrow.png', 0),  # Hitboxes
-     HitBox(200, 400, 'HitBoxArrow.png', 180),
-     HitBox(200, 400, 'HitBoxArrow.png', 90),
-     HitBox(300, 400, 'HitBoxArrow.png', 270),
+h = [HitBox(100, 400, '../assets/HitBoxArrow.png', 0),  # Hitboxes
+     HitBox(200, 400, '../assets/HitBoxArrow.png', 180),
+     HitBox(200, 400, '../assets//HitBoxArrow.png', 90),
+     HitBox(300, 400, '../assets/HitBoxArrow.png', 270),
      ]
 
 # Valores que variam de acordo com a dificuldade
@@ -97,21 +97,21 @@ if menu._end == False:
         a = random.randint(0, 100)
         b = random.randint(0, 100)
         if a < 24:
-            NotasEsquerda.append(Notes(menu._inputs[-2], 0, 'assets/image.png', 0, 4))
+            NotasEsquerda.append(Notes(menu._inputs[-2], 0, '../assets/image.png', 0, 4))
         if b < 24:
-            NotasDireita.append(Notes(menu._inputs[-1], 0, 'assets/image.png', 180, 4))
+            NotasDireita.append(Notes(menu._inputs[-1], 0, '../assets/image.png', 180, 4))
 
         if not menu._medium and not menu._hard:
             return
 
         if a > 79:
-            NotasBaixo.append(Notes(menu._inputs[-3], 0, 'assets/image1.png', 90, 4))
+            NotasBaixo.append(Notes(menu._inputs[-3], 0, '../assets/image1.png', 90, 4))
 
         if not menu._hard:
             return
 
         if b > 79:
-            NotasCima.append(Notes(menu._inputs[-4], 0, 'assets/image1.png', 270, 4))
+            NotasCima.append(Notes(menu._inputs[-4], 0, './assets/image1.png', 270, 4))
 
     def updateNotes():
         global NotasEsquerda
@@ -125,7 +125,7 @@ if menu._end == False:
                 NotasEsquerda[0].y += 501
                 scorePlayer.increment(10)
                 randomNumero = random.randint(1, 38)
-                personagem.file = f'Personagem{randomNumero}.png'
+                personagem.file = f'../assets/character/Personagem{randomNumero}.png'
             else:
                 NotasEsquerda[0].y += 501
                 scorePlayer.decrement(5)
@@ -136,7 +136,7 @@ if menu._end == False:
                 NotasDireita[0].y += 501
                 scorePlayer.increment(10)
                 randomNumero = random.randint(1, 38)
-                personagem.file = f'Personagem{randomNumero}.png'
+                personagem.file = f'../assets/character/Personagem{randomNumero}.png'
             else:
                 NotasDireita[0].y += 501
                 scorePlayer.decrement(5)
@@ -150,7 +150,7 @@ if menu._end == False:
                 NotasBaixo[0].y += 501
                 scorePlayer.increment(10)
                 randomNumero = random.randint(1, 38)
-                personagem.file = f'Personagem{randomNumero}.png'
+                personagem.file = f'../assets/character/Personagem{randomNumero}.png'
             else:
                 NotasBaixo[0].y += 501
                 scorePlayer.decrement(5)
@@ -164,7 +164,7 @@ if menu._end == False:
                 NotasCima[0].y += 501
                 scorePlayer.increment(10)
                 randomNumero = random.randint(1, 38)
-                personagem.file = f'Personagem{randomNumero}.png'
+                personagem.file = f'../assets/character/Personagem{randomNumero}.png'
             else:
                 NotasCima[0].y += 501
                 scorePlayer.decrement(5)
@@ -173,43 +173,43 @@ if menu._end == False:
         global h
         global counter
         if keyboard.is_key_just_down('space'):
-            menu._file = 'music.png'
+            menu._file = '../assets/music.png'
 
         """ if para o menu de seleção de músicas """
 
         if keyboard.is_key_just_down('a'):
             menu._file = 'dificult.png'
-            play('tarecoemariola.ogg')
+            play('../assets/sounds/tarecoemariola.ogg')
         if keyboard.is_key_just_down('b'):
             menu._file = 'dificult.png'
-            play('deixaeutesuperar.ogg')
+            play('../assets/sounds/deixaeutesuperar.ogg')
         if keyboard.is_key_just_down('c'):
             menu._file = 'dificult.png'
-            play('ocheirodecarolina.ogg')
+            play('../assets/sounds/ocheirodecarolina.ogg')
         if keyboard.is_key_just_down('d'):
             menu._file = 'dificult.png'
-            play('oxotedasmeninas.ogg')
+            play('../assets/sounds/oxotedasmeninas.ogg')
         if keyboard.is_key_just_down('e'):
             menu._file = 'dificult.png'
-            play('luaminha.ogg')
+            play('../assets/sounds/luaminha.ogg')
 
         """ if para o menu de dificuldades """
 
-        if menu._file == 'dificult.png':
+        if menu._file == '../assets/dificult.png':
             if keyboard.is_key_just_down('1'):
                 menu._easy = True
                 menu._inputs = easy_inputs
-                menu._file = 'bg.png'
+                menu._file = '../assets/bg.png'
                 menu._end = True
             elif keyboard.is_key_just_down('2'):
                 menu._medium = True
                 menu._inputs = medium_inputs
-                menu._file = 'bg.png'
+                menu._file = '../assets/bg.png'
                 menu._end = True
             elif keyboard.is_key_just_down('3'):
                 menu._hard = True
                 menu._inputs = hard_inputs
-                menu._file = 'bg.png'
+                menu._file = '../assets/bg.png'
                 menu._end = True
 
         if not menu._end:
@@ -262,7 +262,7 @@ if menu._end == False:
     NotasBaixo = []
     NotasCima = []
 
-    personagem = PersonagemAssets('Personagem1.png')
+    personagem = PersonagemAssets('../assets/Personagem1.png')
     scorePlayer = Score()
 
 run(globals())
