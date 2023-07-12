@@ -12,9 +12,7 @@
 
 - [Arthur dos Santos Silva]() - Implemented a method for varied scoring, adding points depending on where the player presses to make the note disappear.
 Updated the documentation to meet the project's requirements.
-- [Artur Mota]() - Adding scoring function per click (without scoring rays).
-Adding dynamic background and character.
-Generating random sheet music and left-right hitbox.
+- [Artur Mota]() - Adding scoring function per click (without scoring rays). Adding dynamic background and character. Generating random sheet music and left-right hitbox.
 - [Fernando Schettini](https://github.com/FernandoSchett).
 - [Bruna Anunciação]() - Implementing function for note disappearance. Creating menu for game start and difficulty selection. Creating menu for song selection.
 - [João Paulo Gomes Bernardino]() - Documentation modeling. Project setup, initial scope. Adding player. Adding music to the project with pygame.
@@ -39,8 +37,8 @@ During the gameplay, musical notes will be displayed on the screen as descending
 
 The project dependencies are described in  ```./dependencies/requirements.``` within the repository. In summary, heres what you're gonna need in order to run the project:
 
-- [```dependencie <version>```](http:link.com).
-- 
+- [```pygame 2.5.0```](http:link.com).
+- [```tupy```](https://github.com/rodrigorgs/tupy).
 
 For installing dependencies more quickly, you can run the following command at terminal, inside the clonned repository:
 
