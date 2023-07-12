@@ -8,6 +8,7 @@ from src.classes.notes import Notes
 from src.classes.menu import Menu
 from src.classes.hitbox import HitBox
 from src.classes.personagemassets import PersonagemAssets
+from src import *
 
 pygame.init()
 
@@ -16,9 +17,7 @@ pygame.init()
     q -> mais à esquerda
     r -> mais à direita
 """
-
 menu = Menu()
-
 
 def play(music):
     pygame.mixer.music.load(f"{os.path.join(os.path.dirname(__file__), './assets/sounds', music)}")
@@ -89,11 +88,6 @@ if menu._end == False:
                 i.destroy()
 
     def createNotes():
-        global NotasEsquerda
-        global NotasDireita
-        global NotasBaixo
-        global NotasCima
-
         a = random.randint(0, 100)
         b = random.randint(0, 100)
         if a < 24:
@@ -177,19 +171,19 @@ if menu._end == False:
 
         """ if para o menu de seleção de músicas """
 
-        if keyboard.is_key_just_down('a'):
+        if keyboard.is_key_just_down('A'):
             menu._file = 'dificult.png'
             play('../assets/sounds/tarecoemariola.ogg')
-        if keyboard.is_key_just_down('b'):
+        if keyboard.is_key_just_down('B'):
             menu._file = 'dificult.png'
             play('../assets/sounds/deixaeutesuperar.ogg')
-        if keyboard.is_key_just_down('c'):
+        if keyboard.is_key_just_down('C'):
             menu._file = 'dificult.png'
             play('../assets/sounds/ocheirodecarolina.ogg')
-        if keyboard.is_key_just_down('d'):
+        if keyboard.is_key_just_down('D'):
             menu._file = 'dificult.png'
             play('../assets/sounds/oxotedasmeninas.ogg')
-        if keyboard.is_key_just_down('e'):
+        if keyboard.is_key_just_down('E'):
             menu._file = 'dificult.png'
             play('../assets/sounds/luaminha.ogg')
 
