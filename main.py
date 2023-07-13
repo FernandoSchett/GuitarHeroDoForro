@@ -1,4 +1,3 @@
-import random
 import os
 
 from tupy import *
@@ -14,55 +13,53 @@ game = GuitarHeroForro()
     r -> mais à direita
 """
 
-print("tome")
-
 def update():
-    global h
-    global counter
+    print("entrou update")
+    key = keyboard.get_pressed()
+    pressed_key = None
 
     if keyboard.is_key_just_down('space'):
         game.__screen._file= './assets/music.png'
     
-    """ if para o game.menu de seleção de músicas """
+    if key['a'] or key['A']:
+        pressed_key = 'A'
+    elif key['b'] or key['B']:
+        pressed_key = 'B'
+    elif key['c'] or key['C']:
+        pressed_key = 'C'
+    elif key['d'] or key['D']:
+        pressed_key = 'D'
+    elif key['e'] or key['E']:
+        pressed_key = 'E'
 
-    if keyboard.is_key_just_down('A'):
+    if pressed_key:
         game.__screen._file = 'dificult.png'
-        game.play('tarecoemariola.ogg')
-    if keyboard.is_key_just_down('B'):
-        game.__screen._file = 'dificult.png'
-        game.play('deixaeutesuperar.ogg')
-    if keyboard.is_key_just_down('C'):
-        game.__screen._file = 'dificult.png'
-        game.play('ocheirodecarolina.ogg')
-    if keyboard.is_key_just_down('D'):
-        game.__screen._file = 'dificult.png'
-        game.play('oxotedasmeninas.ogg')
-    if keyboard.is_key_just_down('E'):
-        game.__screen._file = 'dificult.png'
-        game.play('luaminha.ogg')
+        sound = catalogo.get(pressed_key, None)
+        if sound:
+            game.play(sound)
 
     """ if para o menu de dificuldades """
 
     if game.menu._file == "dificult.png":
         if keyboard.is_key_just_down('1'):
-            print("dacil carai")
             game.menu._easy = True
-            game.menu._inputs = easy_inputs
-            game.menu._file = '../assets/bg.png'
-            game.menu._end = True
+            game.screen._inputs = easy_inputs
+            game.screen._file = '../assets/bg.png'
+            game.screen._end = True
         elif keyboard.is_key_just_down('2'):
-            game.menu._medium = True
-            game.menu._inputs = medium_inputs
-            game.menu._file = '../assets/bg.png'
-            game.menu._end = True
+            game.screen._medium = True
+            game.screen._inputs = medium_inputs
+            game.screen._file = '../assets/bg.png'
+            game.screen._end = True
         elif keyboard.is_key_just_down('3'):
-            game.menu._hard = True
-            game.menu._inputs = hard_inputs
-            game.menu._file = '../assets/bg.png'
-            game.menu._end = True
+            game.screen._hard = True
+            game.screen._inputs = hard_inputs
+            game.screen._file = '../assets/bg.png'
+            game.screen._end = True
 
-    if not game.menu._end:
+    if not game._status == "end":
         return
+    
     if counter == 10:
         game.createNotes()
         counter = 0

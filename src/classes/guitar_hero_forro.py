@@ -19,10 +19,14 @@ class GuitarHeroForro:
         self.scorePlayer = Score()
 
     def start(self):
+
+        def update():
+            print("update")
         run(globals())
 
-    def destroyNotes(self):
 
+    def destroyNotes(self):
+        
         for i in NotasEsquerda:
             """ Função para deletar nota ao passar de y 450 e decrementa o score em 5 """
             if i.y > 450:
