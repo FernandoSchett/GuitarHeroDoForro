@@ -3,7 +3,7 @@ import os
 import pygame
 
 from tupy import *
-from .screen import Screen
+from src.classes.screen import Screen
 from ..global_var import *
 from src.classes.score import Score
 from src.classes.personagemassets import PersonagemAssets
@@ -13,20 +13,18 @@ from src.classes.notes import Notes
 class GuitarHeroForro:
     def __init__(self):
         pygame.init()
-        self._status = all_status[4]
-        self.__screen = Screen()
+        self._status = ""
+        self._inputs = []
+        self._screen = Screen()
         self.personagem = PersonagemAssets('../assets/character/Personagem1.png')
         self.scorePlayer = Score()
+        self._end = False
 
     def start(self):
-
-        def update():
-            print("update")
         run(globals())
 
-
     def destroyNotes(self):
-        
+
         for i in NotasEsquerda:
             """ Função para deletar nota ao passar de y 450 e decrementa o score em 5 """
             if i.y > 450:
@@ -46,7 +44,7 @@ class GuitarHeroForro:
                 NotasDireita.remove(i)
                 i.destroy()
 
-        if not self.menu._medium and not self.menu._hard:
+        if self._status != "medium" and self._status != "hard":
             return
 
         for i in NotasBaixo:
@@ -75,29 +73,25 @@ class GuitarHeroForro:
     def createNotes(self):
         a = random.randint(0, 100)
         b = random.randint(0, 100)
+
         if a < 24:
-            NotasEsquerda.append(Notes(self.screen._inputs[-2], 0, os.path.join(path_file, 'assets/image.png'), 0, 4))
+            NotasEsquerda.append(Notes(self._inputs[-2], 0, os.path.join(path_file, 'Notes.png'), 0, 4))
         if b < 24:
-            NotasDireita.append(Notes(self.screen.menu._inputs[-1], 0, os.path.join(path_file, 'assets/image.png'), 180, 4))
+            NotasDireita.append(Notes(self._inputs[-1], 0, os.path.join(path_file, 'Notes.png'), 180, 4))
 
         if not self._status == "medium" and not self._status == "hard":
             return
 
         if a > 79:
-            NotasBaixo.append(Notes(self.screen._inputs[-3], 0, os.path.join(path_file, 'assets/image.png'), 90, 4))
+            NotasBaixo.append(Notes(self._inputs[-3], 0, os.path.join(path_file, 'Notes2.png'), 90, 4))
 
         if not self._status == "hard":
             return
 
         if b > 79:
-            NotasCima.append(Notes(self.screen._inputs[-4], 0, os.path.join(path_file, 'assets/image.png'), 270, 4))
+            NotasCima.append(Notes(self._inputs[-4], 0, os.path.join(path_file, 'Notes2.png'), 270, 4))
 
     def updateNotes(self):
-        global NotasEsquerda
-        global NotasDireita
-        global NotasBaixo
-        global NotasCima
-
         # Partitura para mais à esquerda
         if keyboard.is_key_just_down("Left") and len(NotasEsquerda) != 0:
             if h[0].y / NotasEsquerda[0].y >= 0.95 and h[0].y / NotasEsquerda[0].y <= 1.18:
@@ -120,8 +114,8 @@ class GuitarHeroForro:
                 NotasDireita[0].y += 501
                 self.scorePlayer.decrement(5)
 
-        if not self.screen.menu._medium and not self.screen._hard:
-            return
+        if self._status == "easy":
+            return 
 
         # Partitura para baixo
         if keyboard.is_key_just_down("Down") and len(NotasBaixo) != 0:
@@ -134,11 +128,12 @@ class GuitarHeroForro:
                 NotasBaixo[0].y += 501
                 self.scorePlayer.decrement(5)
 
-        if not self._status == "hard":
+        if self._status != "hard":
             return
 
         # Partitura para cima
         if keyboard.is_key_just_down("Up") and len(NotasCima) != 0:
+            print(self._status)
             if h[1].y / NotasCima[0].y >= 0.95 and h[1].y / NotasCima[0].y <= 1.18:
                 NotasCima[0].y += 501
                 self.scorePlayer.increment(10)
@@ -149,8 +144,8 @@ class GuitarHeroForro:
                 self.scorePlayer.decrement(5)
 
     def play(self, music):
-        self.mixer.music.load(f"{os.path.join(path_file, 'assets/sounds', music)}")
-        self.mixer.music.play()
+        pygame.mixer.music.load(f"{os.path.join(path_file, 'assets/sounds', music)}")
+        pygame.mixer.music.play()
 
     # Getter methods
     def get_status(self):

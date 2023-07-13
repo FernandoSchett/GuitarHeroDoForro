@@ -21,8 +21,6 @@ class Notes(Image):
         self._angle = angle
         self._speed = speed
 
-    # Getter methods
-    
     def get_file(self):
         return self._file
     
@@ -37,8 +35,6 @@ class Notes(Image):
     
     def get_speed(self):
         return self._speed
-    
-    # Setter methods
     
     def set_file(self, value):
         self._file = value
@@ -56,6 +52,4 @@ class Notes(Image):
         self._speed = value
 
     def update(self):
-        if self._y > 450:
-            return False
         self._y += self._speed

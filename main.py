@@ -4,6 +4,7 @@ from tupy import *
 from src.classes.guitar_hero_forro import GuitarHeroForro
 from src.global_var import *
 
+
 path_file = os.path.dirname(__file__)
 game = GuitarHeroForro()
 
@@ -13,51 +14,64 @@ game = GuitarHeroForro()
     r -> mais à direita
 """
 
+h = [HitBox(100, 400, 'HitBoxArrow.png', 0),  # Hitboxes
+     HitBox(200, 400, 'HitBoxArrow.png', 180),
+     HitBox(200, 400, 'HitBoxArrow.png', 90),
+     HitBox(300, 400, 'HitBoxArrow.png', 270),
+     ]
+
 def update():
-    print("entrou update")
-    key = keyboard.get_pressed()
-    pressed_key = None
-
-    if keyboard.is_key_just_down('space'):
-        game.__screen._file= './assets/music.png'
+    global counter
+    global easy_inputs 
+    global medium_inputs 
+    global hard_inputs 
+    global h
+    global NotasEsquerda
+    global NotasDireita
+    global NotasCima
+    global NotasBaixo
     
-    if key['a'] or key['A']:
-        pressed_key = 'A'
-    elif key['b'] or key['B']:
-        pressed_key = 'B'
-    elif key['c'] or key['C']:
-        pressed_key = 'C'
-    elif key['d'] or key['D']:
-        pressed_key = 'D'
-    elif key['e'] or key['E']:
-        pressed_key = 'E'
+    if keyboard.is_key_just_down('space'):
+        game._screen._file = 'music.png'
 
-    if pressed_key:
-        game.__screen._file = 'dificult.png'
-        sound = catalogo.get(pressed_key, None)
-        if sound:
-            game.play(sound)
+    """ if para o game.__screen de seleção de músicas """
 
-    """ if para o menu de dificuldades """
+    if keyboard.is_key_just_down('a'):
+        game._screen._file = 'dificult.png'
+        game.play('tarecoemariola.ogg')
+    if keyboard.is_key_just_down('b'):
+        game._screen._file = 'dificult.png'
+        game.play('deixaeutesuperar.ogg')
+    if keyboard.is_key_just_down('c'):
+        game._screen._file = 'dificult.png'
+        game.play('ocheirodecarolina.ogg')
+    if keyboard.is_key_just_down('d'):
+        game._screen._file = 'dificult.png'
+        game.play('oxotedasmeninas.ogg')
+    if keyboard.is_key_just_down('e'):
+        game._screen._file = 'dificult.png'
+        game.play('luaminha.ogg')
 
-    if game.menu._file == "dificult.png":
+    """ if para o game.__screen de dificuldades """
+
+    if game._screen._file == "dificult.png":
         if keyboard.is_key_just_down('1'):
-            game.menu._easy = True
-            game.screen._inputs = easy_inputs
-            game.screen._file = '../assets/bg.png'
-            game.screen._end = True
+            game._status = "easy"
+            game._inputs = easy_inputs
+            game._screen._file = '../assets/bg.png'
+            game._end = True
         elif keyboard.is_key_just_down('2'):
-            game.screen._medium = True
-            game.screen._inputs = medium_inputs
-            game.screen._file = '../assets/bg.png'
-            game.screen._end = True
+            game._status = "medium"
+            game._inputs = medium_inputs
+            game._screen._file = '../assets/bg.png'
+            game._end = True
         elif keyboard.is_key_just_down('3'):
-            game.screen._hard = True
-            game.screen._inputs = hard_inputs
-            game.screen._file = '../assets/bg.png'
-            game.screen._end = True
+            game._status = "hard"
+            game._inputs = hard_inputs
+            game._screen._file = '../assets/bg.png'
+            game._end = True
 
-    if not game._status == "end":
+    if not game._end:
         return
     
     if counter == 10:
@@ -66,35 +80,31 @@ def update():
     counter += 1
     
     # modo facil
-    if game.menu._easy:
+    if game._status == "easy":
         """ o _show() é para mostrar as 2 hitboxs do modo fácil """
         h[0]._show()
         h[1]._show()
-        global NotasEsquerda
-        global NotasDireita
         game.destroyNotes()
         game.updateNotes()
 
     # modo medio
-    if game.menu._medium:
+    if game._status == "medium":
         """ o _show() é para mostrar as 3 hitboxs do modo fácil """
         h[0]._show()
         h[1].x = 300
         h[1]._show()
         h[2]._show()
-        global NotasBaixo
         game.destroyNotes()
         game.updateNotes()
 
     # modo dificil
-    if game.menu._hard:
+    if game._status == "hard":
         """ o _show() é para mostrar as 4 hitboxs do modo fácil """
         h[0]._show()
         h[1].x = 400
         h[1]._show()
         h[2]._show()
         h[3]._show()
-        global NotasCima
         game.destroyNotes()
         game.updateNotes()
 
@@ -104,4 +114,4 @@ def update():
     Posição maior que a nota de posição 0.
 """
 
-game.start()
+run(globals())
